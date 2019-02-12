@@ -4,10 +4,11 @@
         <title>Erica's Website</title>
         <style>
             body {
-                background: #4ABDAC;
-                color: rgb(45, 45, 45);
-                padding: 10px;
-                font-family: arial;
+                background-image: linear-gradient( 135deg, #FAD7A1 10%, #E96D71 100%);
+                background-attachment: fixed;
+                color: #48484A;
+                font-family: helvetica;
+                height: 100vh;
             }
             header {
                 font-size: 1.5em;
@@ -20,7 +21,6 @@
     
             /* navigation menu */
             nav {
-                background: #FC4A1A;
                 margin: 0 auto;
                 margin-bottom: 20px;
                 display: flex;
@@ -30,7 +30,7 @@
             nav header {
                 display: flex;
                 align-items: center;
-                color: rgb(255, 255, 255);
+                color: #1F897D;
                 flex: 1;
             }
             nav ul {
@@ -42,20 +42,27 @@
             }
             nav a {
                 text-decoration: none;
-                color: #fff;
+                color: #1F897D;
+                font-weight: 400;
+            }
+            nav a:hover {
+                color: #28AF9F;
             }
     
             /* main container area beneath menu */
             main {
-                background: #DFDCE3;
                 display: flex;
             }
             .sidebar {
                 margin-right: 25px;
+                display: flex;
                 padding: 10px;
+                align-items: center;
             }
             .sidebar img {
                 width: 200px;
+                height: auto;
+                border-radius: 50%;
             }
             .content {
                 flex: 1;
@@ -63,9 +70,6 @@
             }
             .interests header {
                 font-size: 1.25em;
-            }
-            img {
-                border: solid 2px;
             }
         </style>
     </head>
@@ -76,17 +80,18 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="studies.html">Studies</a></li>
                 </ul>
             </nav>
             <main>
                 <div class="sidebar">
-                    <img src="https://avatars3.githubusercontent.com/u/39689614?s=460&v=4">
+                    <img src="https://avatars3.githubusercontent.com/u/39689614?s=460&v=49">
                 </div>
                 <div class="content">
-                    <h1>Erica McCullough</h1>
+                    <header>Erica McCullough</header>
                     <p>Student at Operation Spark</p>
                     <section class="interests">
-                        <h2>Interests</h2>
+                        <header>Interests</header>
                         <ul>
                             <li>Reading</li>
                             <li>Video Games</li>

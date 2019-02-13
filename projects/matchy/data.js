@@ -81,7 +81,7 @@ console.log(animals, animals.length);
 var friends = [];
 function getRandom(array) {
     // return a random index from an input array
-    return Math.floor(Math.random() * array.length);
+    return Math.floor(Math.random() * Math.floor(array.length - 1));
 }
 
 friends.push(animals[getRandom(animals)].name);

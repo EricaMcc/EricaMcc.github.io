@@ -32,15 +32,20 @@ function fizzBuzz() {
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard(numX, numY) {
+function drawChessboard(num) {
   let chessBoard = '';
   let str1 = '';
   let str2 = '';
-  for (let i = 1; i <= numX; i++) {
-    str1 += '# ';
-    str2 += ' #';
+  for (let i = 1; i <= num; i++) {
+    if (i % 2 === 1) {
+      str1 += ' ';
+      str2 += '#'
+    } else {
+      str1 += '#';
+      str2 += ' '
+    }
   }
-  for (let i = 1; i <= numY; i++) {
+  for (let i = 1; i <= num; i++) {
     if (i % 2 === 1) {
       chessBoard += str1 + '\n'; 
     } else {
@@ -55,7 +60,7 @@ function drawChessboard(numX, numY) {
   console.log(chessBoard);
 }
 
-drawChessboard(2, 3);
+// drawChessboard(7);
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////

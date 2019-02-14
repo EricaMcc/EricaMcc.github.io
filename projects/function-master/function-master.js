@@ -3,6 +3,11 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
+    var array = [];
+    for (var key in object) {
+        array.push(object[key]);
+    }
+    return array;
 
 } 
 
@@ -11,6 +16,12 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
+    var array = [];
+    for (var key in object) {
+        array.push(key);
+    }
+    return array.join(' ');
+
 
 }
 
@@ -19,7 +30,13 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    var array = [];
+    for (var key in object) {
+        if (typeof object[key] === 'string') {
+        array.push(object[key]);
+        }
+    }
+    return array.join(' ');
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -28,6 +45,12 @@ function valuesToString(object) {
 
 function arrayOrObject(collection) {
     
+    if (Array.isArray(collection)) {
+        return 'array';
+    } else {
+        return 'object';
+    }
+    
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +58,7 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,15 +66,22 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    var array = string.split(' ');
+    for (var i = 0; i < array.length; i++) {
+        array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
+    }
+    return array.join(' ');
 }
+
+capitalizeAllWords('hello there world');
 
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+    var name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    return 'Welcome ' + name + '!';
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -59,7 +89,9 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
+    var name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    var species = object.species.charAt(0).toUpperCase() + object.species.slice(1);
+    return name + ' is a ' + species;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -67,7 +99,10 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    if (Array.isArray(object.noises) && object.noises.length > 0) {
+        return object.noises.join(' ');
+    }
+    return 'there are no noises';
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -75,7 +110,7 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    return string.includes(word);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -83,7 +118,8 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    object.friends.push(name);
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -91,7 +127,14 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    if (object.friends !== undefined) {
+        for (var i = 0; i < object.friends.length; i++) {
+            if (object.friends[i] === name) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 //////////////////////////////////////////////////////////////////////

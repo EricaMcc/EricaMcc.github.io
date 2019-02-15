@@ -52,11 +52,6 @@ function drawChessboard(num) {
       chessBoard += str2 + '\n';
     }
   }
-  // if (num % 2 === 1) {
-  //     str += ' # # # #'; 
-  // } else {
-  //     str += '# # # #'
-  // }
   console.log(chessBoard);
 }
 

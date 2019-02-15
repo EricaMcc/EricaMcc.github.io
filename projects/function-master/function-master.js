@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-    var array = [];
-    for (var key in object) {
+    const array = [];
+    for (let key in object) {
         array.push(object[key]);
     }
     return array;
@@ -16,8 +16,8 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-    var array = [];
-    for (var key in object) {
+    const array = [];
+    for (let key in object) {
         array.push(key);
     }
     return array.join(' ');
@@ -30,8 +30,8 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    var array = [];
-    for (var key in object) {
+    const array = [];
+    for (let key in object) {
         if (typeof object[key] === 'string') {
         array.push(object[key]);
         }
@@ -58,7 +58,7 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string[0].toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -66,9 +66,9 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    var array = string.split(' ');
-    for (var i = 0; i < array.length; i++) {
-        array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
+    const array = string.split(' ');
+    for (let i = 0; i < array.length; i++) {
+        array[i] = array[i][0].toUpperCase() + array[i].slice(1);
     }
     return array.join(' ');
 }
@@ -80,7 +80,7 @@ capitalizeAllWords('hello there world');
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-    var name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    const name = object.name[0].toUpperCase() + object.name.slice(1);
     return 'Welcome ' + name + '!';
 }
 
@@ -89,8 +89,8 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-    var name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
-    var species = object.species.charAt(0).toUpperCase() + object.species.slice(1);
+    const name = object.name[0].toUpperCase() + object.name.slice(1);
+    const species = object.species[0].toUpperCase() + object.species.slice(1);
     return name + ' is a ' + species;
 }
 
@@ -128,7 +128,7 @@ function addFriend (name, object) {
 
 function isFriend(name, object) {
     if (object.friends !== undefined) {
-        for (var i = 0; i < object.friends.length; i++) {
+        for (let i = 0; i < object.friends.length; i++) {
             if (object.friends[i] === name) {
                 return true;
             }
@@ -142,15 +142,35 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    const people = [];
+    const nonFriends = [];
+    for (let i = 0; i < array.length; i++) {
+        people.push(array[i].name);
+    }
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].name === name) {
+            for (let j = 0; j < people.length; j++) {
+                if (!array[i].friends.includes(people[j]) && people[j] !== name) {
+                    nonFriends.push(people[j]);
+                }
+            }
+            break;
+        }
+    }
+    return nonFriends;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function updateObject(object, key, value) {
+// Should take an object, a key and a value. 
+// Should update the property <key> on <object> with new <value>. 
+// If <key> does not exist on <object> create it."
 
+function updateObject(object, key, value) {
+    object[key] = value;
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -158,7 +178,9 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    for (let i = 0; i < array.length; i++) {
+        delete object[array[i]];
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -166,7 +188,13 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+    const newArr = [];
+    for (let i = 0; i < array.length; i++) {
+        if (!newArr.includes(array[i])) {
+            newArr.push(array[i]);
+        }
+    }
+    return newArr;
 }
 
 //////////////////////////////////////////////////////////////////////

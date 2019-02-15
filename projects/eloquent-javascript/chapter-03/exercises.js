@@ -33,8 +33,8 @@ function isEven(num) {
 ////////////////////////////////////////////////////////////////////////////////
 
 function countChars(string, char) {
-  var countChar = 0;
-  for (var i = 0; i < string.length; i++) {
+  let countChar = 0;
+  for (let i = 0; i < string.length; i++) {
     if (string[i] === char) {
       countChar++;
     }
@@ -47,8 +47,8 @@ function countChars(string, char) {
 ////////////////////////////////////////////////////////////////////////////////
 
 function countBs(string) {
-  var countB = 0;
-  for (var i = 0; i < string.length; i++) {
+  let countB = 0;
+  for (let i = 0; i < string.length; i++) {
     if (string[i] === 'B') {
       countB++;
     }

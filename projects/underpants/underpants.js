@@ -7,7 +7,7 @@ var _ = {};
 
 
 /**
-* START OF OUR LIBRARY!
+* START OF OUR LIBRARY!9
 * Implement each function below it's instructions
 */
 
@@ -462,7 +462,7 @@ _.some = function(collection, func) {
         }
         return false;
     }
-}
+};
 
 /** _.reduce
 * Arguments:
@@ -484,17 +484,25 @@ _.some = function(collection, func) {
 */
 
 _.reduce = function(array, func, seed) {
-    for (let i = 0; i < array.length; i++) {
-        if (i === 0) {
-            if (seed === undefined) {
-                func(array[i], array[i], i);
-            } else {
-                func(seed, array[i], i);
-            }
+    let val;
+    for (let i = 0; i < array.length - 1; i++) {
+        // if there is no seed, assign seed to first element of array
+        if (seed === undefined) {
+            seed = array[0];
+        // continue to next iteration
+            continue;
         }
-        func(func(), array[i], i);
+        // if val has not been assigned yet, call the function with seed
+        if (val === undefined) {
+            val = func(seed, array[i], i);
+        // if val has already been assigned, call the function using the previous
+        // function's result
+        } else {
+            val = func(val, array[i], i);
+        }
     }
-    return func();
+    // return the final function call
+    return func(val, array[array.length-1], array.length-1);
 };
 
 /** _.extend
@@ -511,6 +519,15 @@ _.reduce = function(array, func, seed) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(obj1, obj2) {
+    for (let i = 1; i < arguments.length; i++) {
+        for (let key in arguments[i]) {
+            obj1[key] = arguments[i][key];
+        }
+    }
+    return obj1;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

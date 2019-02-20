@@ -20,7 +20,24 @@ Simple datatypes:
    operations on these datatypes return a new simple value
    they do not hold, collect, or aggregate values
 2. COPY BY VALUE - their value is directly copied from one variable to the next
+*/
 
+// Below are some examples of primitive datatypes
+var string = 'this is a string';
+var number = 7;
+var boolean = true;
+
+// This is an example of primitive datatypes as immutable
+string[0] = 'T';
+console.log(string); // prints 'this is a string'
+
+// Unlike an array or object, we cannot directly alter values in a string
+// Instead we must assign a new value
+
+string = 'This is a string';
+console.log(string); // prints 'This is a string';
+
+/*
 COMPLEX DATATYPES
 
 Complex datatypes are arrays, objects, and functions
@@ -40,7 +57,8 @@ about a single item
 
 In an object, the key is always a string
 However, the value can be of any datatype (even another object)
-For example, */
+For example, 
+*/
 
 var object = {
     id: 1,
@@ -80,14 +98,13 @@ array[3] = 4;
 console.log(array); // prints [2, 2, 3, 4]
 
 /* 
-
 SIMPLE (PRIMITIVE) VS COMPLEX DATAYPES
 
 A variable can directly store up to 8 bytes of memory.  This means that
 SIMPLE DATATYPES (which have a fixed size) can be stored directly within
 the variable.  However, because COMPLEX DATATYPES are of an indefinite size, 
-they must be stored somewhere separately.  So when we assign them to a variable,
-it points to the place in memory they are stored.
+they must be stored somewhere else.  So when we assign complex datatypes to a
+variable, it actually points to the place in memory they are stored.
 
 COPY BY VALUE VS COPY BY REFERECNCE
 
@@ -103,7 +120,35 @@ copies the reference point to the place in memory that the data is actually stor
 that if that new variable is altered, it will alter the original variable's 
 value as well.
 
+Below are examples of COPY BY VALUE and COPY BY REFERENCE
 */
 
+// COPY BY VALUE
+var copyNumber = number;
+console.log(number); // prints 7
+copyNumber += 1;
+console.log(copyNumber); // prints 8
+console.log(number); // prints 7
 
+// COPY BY REFERENCE
+var copyArray = array;
+console.log(array); // prints [2, 2, 3, 4]
+copyArray[0] = 1;
+console.log(copyArray); // prints [1, 2, 3, 4]
+console.log(array); // prints [1, 2, 3, 4]
 
+/* 
+
+Looking at the above examples, you can see an example of copy by value with
+a number and an example of copy by referenece with an array. When we look at the
+number (which is a primitive datatype), we can see that altering the copy of
+original variable did not alter the value of the original variable itself.
+This is because when we assigned copyNumber to number, we made a direct copy of
+the value of number (which was 7). When we look at the array 
+(which is a complex datatype), we can see that altering the copy array altered
+not only that arrays values, but also the values in the orinal array that it
+was copied from.  This is because when we assigned the copyArray to array's value,
+it was actually assigned to the original place in memory that BOTH array's point to.
+So altering one would alter the other as well.
+
+*/

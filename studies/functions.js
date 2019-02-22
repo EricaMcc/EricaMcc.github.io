@@ -1,6 +1,8 @@
 // FUNCTIONS
 
-// functions are blocks of reusable code that output a value
+// Functions are blocks of reusable code that performs some action. For this reason,
+// functions help us keep our code DRY (Don't Repeat Yourself). Functions may or
+// may not return a value, but a function is always equal to its return value.
 
 // DECLARING AND CALLING FUNCTIONS
 
@@ -55,14 +57,23 @@ blocks
 
 CLOSURE
 
-Closure occurs when we access a variable within a function from a parent.
-This can mean accessing a variable in the global scope (outside of the function)
-or it can mean accessing a variable from a parent function that it is
+Closure occurs when we access a variable within a function from somewhere
+in the parent scope.
+This can mean accessing a variable in the global scope (outside of the function
+completely), or it can mean accessing a variable from a parent function that it is
 nested in. 
 
 NOTE: a child block can access from its parents block/s,
 but the reverse is NOT true (a parent cannot access variables declared within 
 its children blocks)
 
-
+Below is an example of closure:
 */
+
+var globalNum = 7;
+
+function subtract(num) {
+    console.log(globalNum - num); // closure is occuring here because we are
+}                                // accessing globalNum from the global scope
+
+subtract(3); // prints 4

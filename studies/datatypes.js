@@ -4,6 +4,10 @@ There are 2 main typees of data in javascipt
 1. Simple (Primitive)
 2. Complex
 
+If is useful in programming to know what types of data you are dealing with so
+we know what we can/can't do with them.  There are also situation in which
+one datatype might be preferable over another.
+
 SIMPLE DATATYPES
 
 Simple datatypes are strings, numbers, booleans, null, undefined, and symbols

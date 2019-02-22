@@ -1,6 +1,10 @@
 // STRING MANIPULATION
 
-// A string is any combination of characters contained within single or double quotes
+// A string is any combination of characters contained within single or double quotes.
+// Strings are a type of primitive (simple) data. As such, strings are immutable,
+// which means that they cannot be altered, and they are of a definite size.
+// There are many useful things that we can do with strings, which I will go over
+// below.
 
 // ACCESSING STRINGS
 
@@ -47,7 +51,10 @@ console.log(name); // logs 'Jen'
 
 /* STRING METHODS
 
-These are some useful methods available for use with strings
+These are some useful methods available for use with strings. We can use these
+built-in functions to manipulate strings String methods are pure, which means 
+that they don't alter the original string and we don't have to worry about
+them producing any side effects.
 
 .toLowerCase() and .toUpperCase() change the case of every character within
 the string to lower case or upper case respectively

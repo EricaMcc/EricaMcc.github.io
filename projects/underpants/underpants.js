@@ -232,11 +232,11 @@ _.each = function(collection, func) {
 
 _.unique = function(array) {
     const output = [];
-    for (let i = 0; i < array.length; i++) {
-        if (_.indexOf(output, array[i]) === -1) {
-            output.push(array[i]);
+    _.each(array, function(val, i, arr) {
+        if (_.indexOf(output, val) === -1) {
+        output.push(val);
         }    
-    }
+    });
     return output;
 };
 
@@ -259,12 +259,11 @@ _.unique = function(array) {
 
 _.filter = function(array, func) {
     const output = [];
-    // for (let i = 0; i < array.length; i++) {
-    //     if (func(array[i], i, array)) {
-    //         output.push(array[i]);
-    //     }
-    // }
-    _.each(array, function(val, i, col) {if (func(val, i, col)) {output.push(val)}});
+    _.each(array, function(val, i, col) {
+        if (func(val, i, col)) {
+            output.push(val)
+        }
+    });
     return output;
 };
 
@@ -310,13 +309,13 @@ _.partition = function(array, func) {
     const output = [];
     const trueArr = [];
     const falseArr = [];
-    for (let i = 0; i < array.length; i++) {
-        if (func(array[i], i, array)) {
-            trueArr.push(array[i]);
+    _.each(array, function(val, i, arr) {
+        if (func(val, i, arr)) {
+            trueArr.push(val);
         } else {
-            falseArr.push(array[i]);
+            falseArr.push(val);
         }
-    }
+    });
     output.push(trueArr, falseArr);
     return output;
 };
@@ -340,15 +339,18 @@ _.partition = function(array, func) {
 
 _.map = function(collection, func) {
     const output = [];
-    if (Array.isArray(collection)) {
-        for (let i = 0; i < collection.length; i++) {
-            output.push(func(collection[i], i, collection));
-        }
-    } else {
-        for (let key in collection) {
-            output.push(func(collection[key], key, collection));
-        }
-    }
+    // if (Array.isArray(collection)) {
+    //     for (let i = 0; i < collection.length; i++) {
+    //         output.push(func(collection[i], i, collection));
+    //     }
+    // } else {
+    //     for (let key in collection) {
+    //         output.push(func(collection[key], key, collection));
+    //     }
+    // }
+    _.each(collection, function(val, i, col) {
+        output.push(func(val, i, col));
+    });
     return output;
 };
 
@@ -490,7 +492,7 @@ _.reduce = function(array, func, seed) {
         if (seed === undefined) {
             seed = array[0];
         // continue to next iteration
-            continue;
+            i = 1;
         }
         // if val has not been assigned yet, call the function with seed
         if (val === undefined) {
@@ -520,13 +522,13 @@ _.reduce = function(array, func, seed) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function(obj1, obj2) {
+_.extend = function(obj) {
     for (let i = 1; i < arguments.length; i++) {
         for (let key in arguments[i]) {
-            obj1[key] = arguments[i][key];
+            obj[key] = arguments[i][key];
         }
     }
-    return obj1;
+    return obj;
 };
 
 //////////////////////////////////////////////////////////////////////

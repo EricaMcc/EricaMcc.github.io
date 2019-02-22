@@ -1,9 +1,9 @@
 // LOOPS:
 
-// Loops allow us to run a block of code repeatedly
-// They are useful when dealing with arrays and objects
-// There are several types of loops
-
+// Loops allow us to run a block of code repeatedly. This action is called
+// iterating. Loops are useful when dealing with arrays and objects. Like functions,
+// loops allow us to keep our code DRY (Don't Repeat Yourself).
+// There are several types of loops listed below.
 
 // FOR LOOP
 
@@ -12,7 +12,8 @@
         console.log(i); //logs the numbers 1 - 10
     }
     
-// for loops take in 3 values in parentheses
+// For use with arrays, for loops take in 3 values in parentheses.
+// for loops can run forwards through an array from 0 or backwards.  
 
 // 1. INITIALIZATION or starting condition
 
@@ -37,7 +38,16 @@ while (i < 11) {
 
 // In a while loop, the variable for the starting condition is declared outside of the loop
 // The parentheses contain only the stopping condition
-// The increment must be placed within the code block
+// The increment must be placed within the code block (if we are using one)
+
+// while loops are useful for situations in which we don't know how many times
+// we will be iterating. They are expecially useful for repeatedly performing
+// an action until the desired condition is/isn't met.
+
+// For example, if we want an alert to continue popping up until a user has
+// input some information (such as login) and only stop once that condition has
+// been met, we can use a while loop.  We would not be able to accomplish
+// this using a for loop.
 
 // DO WHILE LOOP
 
@@ -60,7 +70,10 @@ for (var key in object) {
 }
 
 // A for in loop allows us to iterate over objects to retrieve keys and/or values
-// Object refers to the name of whichever object you would like to loop6 through
+// object refers to the name of whichever object you would like to loop through
+// Unlike a for loop, we cannot loop through an objects in reverse using a for
+// in loops. If we wanted to do this, we would have to move the keys/values to
+// an array and loop through them in reverse using a for loop.
 // NOTE: you should always use bracket notation to access key because it is a variable
 
 // BREAK AND CONTINUE

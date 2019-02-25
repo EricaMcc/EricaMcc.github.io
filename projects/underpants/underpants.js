@@ -132,16 +132,14 @@ _.last = function(array, number) {
         return [];
     } else if (!number) {
         return array[array.length-1];
-    } else {
-        if (number > array.length) {
+    } else if (number > array.length) {
             return array;
-        } else {
-            for (let i = array.length - number; i < array.length; i++) {
-                output.push(array[i]);
-            }
+    } else {
+        for (let i = array.length - number; i < array.length; i++) {
+            output.push(array[i]);
         }
-        return output;
     }
+        return output;
 };
 
 
@@ -234,7 +232,7 @@ _.unique = function(array) {
     const output = [];
     _.each(array, function(val, i, arr) {
         if (_.indexOf(output, val) === -1) {
-        output.push(val);
+            output.push(val);
         }    
     });
     return output;
@@ -261,7 +259,7 @@ _.filter = function(array, func) {
     const output = [];
     _.each(array, function(val, i, col) {
         if (func(val, i, col)) {
-            output.push(val)
+            output.push(val);
         }
     });
     return output;
@@ -282,7 +280,11 @@ _.filter = function(array, func) {
 */
 
 _.reject = function(array, func) {
-    return _.filter(array, function(val, i, col) {if (!func(val, i, col)) {return val}});
+    return _.filter(array, function(val, i, col) {
+        if (!func(val, i, col)) {
+            return val;
+        }
+    });
 };
 
 
@@ -307,19 +309,18 @@ _.reject = function(array, func) {
 
 _.partition = function(array, func) {
     const output = [];
-    const trueArr = [];
-    const falseArr = [];
+    const truthy = [];
+    const falsy = [];
     _.each(array, function(val, i, arr) {
         if (func(val, i, arr)) {
-            trueArr.push(val);
+            truthy.push(val);
         } else {
-            falseArr.push(val);
+            falsy.push(val);
         }
     });
-    output.push(trueArr, falseArr);
+    output.push(truthy, falsy);
     return output;
 };
-
 
 /** _.map
 * Arguments:
@@ -333,7 +334,7 @@ _.partition = function(array, func) {
 *            the value, it's key, <collection>
 *   2) save the return value of each <function> call in a new array
 *   3) return the new array
-* Examples:
+* Examples:AQ   
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
@@ -366,7 +367,9 @@ _.map = function(collection, func) {
 */
 
 _.pluck = function(array, prop) {
-    return _.map(array, function(object){return object[prop]});
+    return _.map(array, function(object){
+        return object[prop];
+    });
 };
 
 /** _.every
@@ -393,31 +396,24 @@ _.pluck = function(array, prop) {
 _.every = function(collection, func) {
     if (Array.isArray(collection)) {
         for (let i = 0; i < collection.length; i++) {
-            if (func === undefined) {
-                if (!collection[i]) {
+            if (!func && !collection[i]) {
                     return false;
-                }
-            }
-            if (func !== undefined && !func(collection[i], i, collection)) {
-                return false;
+                } else if (func && !func(collection[i], i, collection)) {
+                    return false;
             }
         }
         return true;
     } else {
         for (let key in collection) {
-            if (func === undefined) {
-                if (!collection[key]) {
-                    return false;
-                }
-            }
-            if (func !== undefined && !func(collection[key], key, collection)) {
+            if (!func && !collection[key]) {
+                return false;
+            } else if (func && !func(collection[key], key, collection)) {
                 return false;
             }
         }
         return true;
     }
 };
-
 
 /** _.some
 * Arguments:
@@ -443,22 +439,18 @@ _.every = function(collection, func) {
 _.some = function(collection, func) {
     if (Array.isArray(collection)) {
         for (let i = 0; i < collection.length; i++) {
-            if (func === undefined) {
-                if (collection[i]) {
+            if (!func && collection[i]) {
                     return true;
-                }
-            } else if (func !== undefined && func(collection[i], i, collection)) {
-                return true;
+                } else if (func && func(collection[i], i, collection)) {
+                    return true;
             }
         }
         return false;
     } else {
         for (let key in collection) {
-            if (func === undefined) {
-                if (collection[key]) {
-                    return true;
-                }
-            } else if (func !== undefined && func(collection[key], key, collection)) {
+            if (!func && collection[key]) {
+                return true;
+            } else if (func && func(collection[key], key, collection)) {
                 return true;
             }
         }

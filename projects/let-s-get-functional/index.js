@@ -3,7 +3,7 @@
 'use strict';
 
 var customers = require('./data/customers.json');
-var _ = require(/* Replace this with the name of your lodown! */);
+var _ = require('lodown-ericamcc');
 
 /**
  * 1. Import your lodown module using the require() method,
@@ -19,27 +19,108 @@ var _ = require(/* Replace this with the name of your lodown! */);
  *    npm start --prefix ./projects/let-s-get-functional
  */
 
-var maleCount = function(array) {
-
+var maleCount = function(arr) {
+    const male = _.filter(arr, function(val, i, col) {
+        return val.gender === 'male';
+    });
+    return male.length;
 };
 
-var femaleCount;
+var femaleCount = function(arr) {
+    const genders = _.pluck(arr, 'gender');
+    return _.reduce(genders, function(total, gender, index) {
+        if (gender === 'female') {
+            total++;
+        }
+        return total;
+    }, 0);
+};
 
-var oldestCustomer;
+var oldestCustomer = function(arr) {
+    let oldest = 0;
+    let oldestCust;
+    _.each(arr, function(val, i, col) {
+        if (val.age > oldest) {
+            oldest = val.age;
+            oldestCust = val.name;
+        }
+    });
+    return oldestCust;
+};
 
-var youngestCustomer;
+var youngestCustomer = function(arr) {
+    let youngest = 1000;
+    let youngestCust;
+    _.each(arr, function(val, i, col) {
+        if (val.age < youngest) {
+            youngest = val.age;
+            youngestCust = val.name;
+        }
+    });
+    return youngestCust;
+};
 
-var averageBalance;
+var averageBalance = function(arr) {
+    const balances = _.map(arr, function(val, i, col) {
+        return parseInt(val, 1);
+    });
+    return _.reduce(balances, function(sum, amount, index) {
+        sum += amount;
+        if (index === balances.length-1) {
+            return sum / balances.length;
+        } else { 
+            return sum;
+        }
+    });
+};
 
-var firstLetterCount;
+var firstLetterCount = function(arr, letter) {
+    let count = 0;
+    _.each(arr, function(val, i, col) {
+        let firstLetter = val.name[0].toLowerCase();
+        if (firstLetter === letter.toLowerCase()) {
+            count++;
+        }
+    });
+    return count;
+};
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = function(arr, customer, letter) {
+    // find the object containing customer at name key
+    let friendsNames = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].name === customer) {
+            // pluck the friends' names from that object at friends
+           return _.pluck(arr[i].friends, 'name'); 
+        } 
+    }
+    return friendsNames;
+    // check friends names that match first letter
+    // let matches = _.filter(friendsNames, function(val, i, col) {
+    //     return val[0].toLowerCase() === letter.toLowerCase;
+    // });
+    // // return the number of names that match
+    // return matches.length;
+};
 
-var friendsCount;
+var friendsCount = function(arr, name) {
+    return _.pluck(_.filter(arr, function(val, i, col) {
+        return _.contains(val.friends, name);
+    }), 'name');
+};
 
 var topThreeTags;
 
-var genderCount;
+var genderCount = function(arr) {
+    _.reduce(arr, function(count, gender, index) {
+        if (!count[gender]) {
+            count[gender] = 1;
+        } else {
+            count[gender]++;
+        }
+        return count;
+    }, { });
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

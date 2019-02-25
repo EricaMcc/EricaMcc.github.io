@@ -95,7 +95,7 @@ describe('Let\'s Get Functional', function(){
       expect(test).to.equal(true);
     });
   });
-
+  
   describe('firstLetterCount()', function () {
     'use strict';
 
@@ -167,7 +167,7 @@ describe('Let\'s Get Functional', function(){
       expect(result).to.equal(2);
     });
   });
-
+  debugger;
   // TODO: Find out what the friends thing is asking for
 
   describe('friendsCount()', function () {

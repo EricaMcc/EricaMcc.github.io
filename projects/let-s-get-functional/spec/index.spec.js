@@ -167,8 +167,6 @@ describe('Let\'s Get Functional', function(){
       expect(result).to.equal(2);
     });
   });
-  debugger;
-  // TODO: Find out what the friends thing is asking for
 
   describe('friendsCount()', function () {
     'use strict';

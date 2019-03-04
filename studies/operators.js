@@ -90,12 +90,6 @@ num = 10;
 num %= 3;
 console.log(num); // logs 1
 
-// **= is the exponentiation assignment operator
-// it raises the value of the first operand to the power of the second operand and assigns it
-num = 5;
-num **= 2;
-console.log(num); // logs 25
-
 // COMPARISON OPERATORS:
 
 // == checks if two values are equal, returns true if they are, false if they aren't

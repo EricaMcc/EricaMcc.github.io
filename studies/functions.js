@@ -67,7 +67,7 @@ NOTE: a child block can access from its parents block/s,
 but the reverse is NOT true (a parent cannot access variables declared within 
 its children blocks)
 
-Below is an example of closure:
+Below is an example of closure where a variable in the global scope is being accessed:
 */
 
 var globalNum = 7;
@@ -77,3 +77,14 @@ function subtract(num) {
 }                                // accessing globalNum from the global scope
 
 subtract(3); // prints 4
+
+// Below is an example of a local variable being accessed from a parent function:
+
+function closure() {
+    var localVar = 'yay closure';
+    return function() {
+        console.log(localVar); // localVar is being accessed outside
+    };                         // of the current function scope from the parent function
+}
+
+closure()();

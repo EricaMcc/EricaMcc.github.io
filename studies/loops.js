@@ -8,12 +8,11 @@
 // FOR LOOP
 
 
-    for (var i = 1; i < 11; i++) {
-        console.log(i); //logs the numbers 1 - 10
+    for (let i = 1; i < 11; i++) {
+        console.log(i); // prints the numbers from 1 to 10
     }
     
 // For use with arrays, for loops take in 3 values in parentheses.
-// for loops can run forwards through an array from 0 or backwards.  
 
 // 1. INITIALIZATION or starting condition
 
@@ -27,6 +26,16 @@
 // 3. INCREMENT
 
     i++;
+    
+// for loops can run forwards through an array from 0 or backwards.  
+// Below is an example of a for loop running backwards
+
+for (let i = 10; i >= 0; i--) {
+    console.log(i); // prints numbers from 10 down to 1
+}
+
+// in the loop running in reverse, we have initialized it at 10, where it will
+// start and incremented it to count down to the stopping condition, which is 0
 
 // WHILE LOOP
 

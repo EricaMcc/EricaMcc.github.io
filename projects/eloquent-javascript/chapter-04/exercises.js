@@ -3,19 +3,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 function range(start, end, step) {
-  // const output = [];
-  // if (start === end) {
-  //   return [];
-  // } else if (!isNaN(step)) {
-  //   for (let i = start; i <= end; i+=step) {
-  //     output.push(i);
-  //   }
-  // } else {
-  //   for (let i = start; i <= end; i++) {
-  //     output.push(i);
-  //   }
-  // }
-  // return output;
+  const output = [];
+  if (start === end || step < 0) {
+    return [];
+  } 
+  if (!step) {
+    step = 1;
+  }
+    for (let i = start; i <= end; i+=step) {
+      output.push(i);
+    }
+  return output;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -23,11 +21,11 @@ function range(start, end, step) {
 ////////////////////////////////////////////////////////////////////////////////
 
 function sum(arr) {
-  // let output = 0;
-  // for (let i = 0; i < arr.length; i++) {
-  //   output += arr[i];
-  // }
-  // return output;
+  let output = 0;
+  for (let i = 0; i < arr.length; i++) {
+    output += arr[i];
+  }
+  return output;
 }
 
 // ////////////////////////////////////////////////////////////////////////////////
@@ -35,11 +33,11 @@ function sum(arr) {
 // ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArray(arr) {
-  // const output = [];
-  // for (let i = arr.length-1; i >= 0; i--) {
-  //   output.push(i);
-  // }
-  // return output;
+  const output = [];
+  for (let i = 0; i < arr.length; i++) {
+    output.unshift(arr[i]);
+  }
+  return output;
 }
 
 // ////////////////////////////////////////////////////////////////////////////////
@@ -47,48 +45,87 @@ function reverseArray(arr) {
 // ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArrayInPlace(arr) {
-  // arr[0] = arr.pop();
-  // return arr;
+  for (let i = 0; i < arr.length; i++) {
+    arr.splice(i, 0, arr.pop());
+  }
+  return arr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-  
+function arrayToList(arr) {
+  let list = null;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    list = {value: arr[i], rest: list};
+  }
+  return list;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list) {
+  const array = [];
+  for (let node = list; node; node = node.rest) {
+    array.push(node.value);
+  }
+  return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
-
+function prepend(element, list) {
+  // takes an element and a list and creates a new list
+  // adds the element to the front of the input list
+  const newList = {value: element, rest: list};
+  return newList;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+function nth(list, number) {
+  // takes a list and a number
+  // returns the element at the given position in the list (with zero referring to the first element)
+  // or undefined when there is no such element
+  if (!list) {
+    return undefined;
+  } else if (number === 0) {
+    return list.value;
+  }
+  return nth(list.rest, --number);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
-
+function deepEqual(val1, val2) {
+  if (typeof val1 === 'object' && val1 !== null) {
+    if (typeof val2 === 'object' && val2 !== null) {
+      const keys = Object.keys(val1);
+      let key;
+      for (let i = 0; i < keys.length; i++) {
+        key = keys[i];
+        if (!val2.hasOwnProperty(key)) {
+          return false;
+        } else if (typeof val2[key] === 'object') {
+          return deepEqual(val1[key], val2[key]);
+        } else if (val1[key] !== val2[key]) {
+          return false;
+        }
+      }
+      return true;
+    }
+  } else {
+    return val1 === val2;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

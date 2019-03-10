@@ -1,4 +1,24 @@
-`require('./path/to/scripts.js')`;
+const path = require('path');
+const expect = require('chai').expect;
+const sinon = require('sinon');
+
+const SCRIPTS = require(path.join(__dirname, '..', './chapter-05/scripts.js'));
+
+const {
+  repeat,
+  characterScript,
+  countBy,
+  textScripts,
+  range,
+  sum,
+} = require(path.join(__dirname, '..', './chapter-05/helpers.js'));
+
+const {
+  flatten,
+  loop,
+  every,
+  dominantDirection,
+} = require(path.join(__dirname, '..', './chapter-05/exercises.js'));
 
 describe('Eloquent JavaScript', function () {
   describe('Chapter 05', function () {
@@ -33,6 +53,9 @@ describe('Eloquent JavaScript', function () {
         loop(3, n => n > 0, n => n - 1, console.log);
         console.log.args.forEach((args, i) => {
           expect(args[0]).to.equal(result[i]);
+        });
+        result.forEach((val, i) => {
+          expect(val).to.equal(console.log.args[i][0]);
         });
       });
       it("should work with unique 'test' value", function () {
@@ -79,7 +102,7 @@ describe('Eloquent JavaScript', function () {
         expect(every([], n => n < 10)).to.equal(true);
       });
     });
-    
+
     describe("dominantDirection", function () {
       it("should determine dominant direction", function () {
         expect(dominantDirection("Hello!")).to.equal('ltr');

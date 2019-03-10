@@ -36,8 +36,37 @@ function every(arr, test) {
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
-
+function dominantDirection(text) {
+  // var scripts = `require('./path/to/scripts.js')`;
+  let code;
+  const direction = [];
+  let dominant;
+  for (let i = 0; i < text.length; i++) {
+    code = text.charCodeAt(i);
+    for (let script of SCRIPTS) {
+      if (script.ranges.some(([from, to]) => {
+        return code >= from && code < to;
+      })) {
+        direction.push(script.direction);
+      }
+    }
+  }
+  const dirTally = direction.reduce((tally, dir) => {
+    if (!tally[dir]) {
+      tally[dir] = 1;
+    } else {
+      tally[dir] += 1;
+    }
+    return tally;
+  }, {});
+  for (let key in dirTally) {
+    if (!dominant) {
+      dominant = key;
+    } else if (dirTally[dominant] < dirTally[key]) {
+      dominant = key;
+    }
+  }
+  return dominant;
 }
 
 // /////////////////////////////////////////////////////////////////////////////
